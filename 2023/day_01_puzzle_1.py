@@ -1,5 +1,7 @@
 """Advent of code, 01.12.2023, puzzle 1"""
 
+import re
+
 from input_handling import read_input_file
 
 
@@ -22,17 +24,14 @@ def check_integer_in_string(part_of_string: str) -> str:
         return ""
 
 
-def find_integers_in_string(input_string: str) -> str:
+def find_integers_in_string(input_string: str) -> list:
     """Find all integers in a string."""
-    integers_in_string = ""
-    for character in input_string:
-        integers_in_string += check_integer_in_string(character)
-    return integers_in_string
+    return re.findall(pattern="[0-9]", string=input_string)
 
 
-def decode_string(integer_string: str) -> int:
+def decode_string(list_of_integers: list) -> int:
     """Decode a string to return the first and last number contained as one integer."""
-    return int(integer_string[0] + integer_string[-1])
+    return int(str(list_of_integers[0]) + str(list_of_integers[-1]))
 
 
 def sum_decoded_integers(list_of_decoded_integers: list) -> int:

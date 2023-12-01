@@ -1,6 +1,6 @@
 """Advent of code, 01.12.2023, puzzle 2"""
 
-from day_01_puzzle_1 import find_integers_in_string, decode_string, sum_decoded_integers
+from day_01_puzzle_1 import sum_decoded_integers
 from input_handling import read_input_file
 
 valid_string_digits = {
@@ -33,6 +33,19 @@ tricky_characters = [
 ]
 
 example_output = [29, 83, 13, 24, 42, 14, 76]
+
+
+def find_integers_in_string(input_string: str) -> str:
+    """Find all integers in a string."""
+    integers_in_string = ""
+    for character in input_string:
+        integers_in_string += check_integer_in_string(character)
+    return integers_in_string
+
+
+def decode_string(integer_string: str) -> int:
+    """Decode a string to return the first and last number contained as one integer."""
+    return int(integer_string[0] + integer_string[-1])
 
 
 def find_valid_string_digit(input_string: str) -> str:
