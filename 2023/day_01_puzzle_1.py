@@ -54,7 +54,7 @@ def validate_example():
 def solve_puzzle():
     """Solve the puzzle."""
     list_of_decoded_integers = []
-    puzzle_input = read_input_file("src/advent_of_code/2023/input/day_01_input.txt")
+    puzzle_input = read_input_file("2023/input/day_01_input.txt")
     for line in puzzle_input:
         list_of_decoded_integers.append((decode_string(find_integers_in_string(line))))
     return sum_decoded_integers(list_of_decoded_integers)
