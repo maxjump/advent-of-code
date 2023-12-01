@@ -9,7 +9,7 @@ The download is not included in the scripts to avoid unnecessary requests to the
 ## How to run
 Each day is a separate python file. To run a day, simply run the file with python3. For example:
 ```python
-python advent-of-code/2023/day_01_puzzle_1.py
+python 2023/day_01_puzzle_1.py
 ```
 
 If you want to run the included linters (black and flake8), install the dependencies from the requirements file:
