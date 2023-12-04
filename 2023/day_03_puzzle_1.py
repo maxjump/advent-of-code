@@ -40,9 +40,20 @@ def determine_input_types(input_str: list[str]) -> np.array:
     return np.array(input_types_list)
 
 
+def generate_integer_and_symbol_arrays(input_array: np.array) -> (np.array, np.array):
+    """Generate two arrays, one for integers and one for symbols."""
+    integer_array = input_array.copy()
+    np.place(integer_array, integer_array < 0, np.nan)
+    symbol_array = input_array.copy()
+    np.place(symbol_array, symbol_array > 0, np.nan)
+    np.place(symbol_array, symbol_array == -1, 1)
+    return integer_array, symbol_array
+
+
 def main(input_array: np.array):
     """TODO"""
-    for line_number, array in enumerate(input_array):
+    integer_array, symbol_array = generate_integer_and_symbol_arrays(input_array)
+    for line_number, array in enumerate(integer_array):
         print(array)
         # get coordinates of integers
         number_fields = []
