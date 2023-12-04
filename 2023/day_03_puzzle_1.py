@@ -5,7 +5,7 @@ from typing import Iterable
 
 import numpy as np
 
-# from input_handling import read_input_file
+from input_handling import read_input_file
 
 example_input = [
     "467..114..",
@@ -85,27 +85,28 @@ def main(input_array: np.array):
                 number_as_string = str(int(array[number]))
             current_location = number
         integers_found.append(int(number_as_string))
-        print(locations_found, integers_found)
+        # print(locations_found, integers_found)
         integer_coordinates.append([line_number, locations_found])
-    print(integer_coordinates)
+    # print(integer_coordinates)
     # check whether symbol adjacent
     adjacent_symbol_check = []
-    print(symbol_array)
+    # print(symbol_array)
     for coordinates in integer_coordinates:
         line, row_list = coordinates
         for rows in row_list:
-            print(line, rows)
+            # print(line, rows)
             lines_to_search = range(max(line-1, 0), min(line+2, integer_array.shape[0]))
             rows_to_search = range(max(rows[0]-1, 0), min(rows[-1]+2, integer_array.shape[0]))
-            print(lines_to_search, rows_to_search)
+            # print(lines_to_search, rows_to_search)
             adjacent_symbol_check.append(
                 symbol_at_integer_location(
                     symbol_array, lines_to_search, rows_to_search, line, rows))
-    print(adjacent_symbol_check)
-    print(integers_found)
+    # print(adjacent_symbol_check)
+    # print(integers_found)
     relevant_integers = get_relevant_integers(integers_found, adjacent_symbol_check)
-    print(relevant_integers)
-    assert relevant_integers == example_output
+    # print(relevant_integers)
+    # assert relevant_integers == example_output
+    return sum(relevant_integers)
 
 
 def symbol_at_integer_location(
@@ -118,13 +119,13 @@ def symbol_at_integer_location(
     """Check whether a symbol is present next to the integer."""
     for line in lines_to_search:
         for row in rows_to_search:
-            print(line, row, symbol_array[line, row], symbol_array[line, row] == 1)
+            # print(line, row, symbol_array[line, row], symbol_array[line, row] == 1)
             if line == line_of_integer and row in rows_of_integer:
                 continue
             elif symbol_array[line, row] == 1.0:
                 print("True found", line, row)
                 return True
-    print("Not found")
+    # print("Not found")
     return False
 
 
@@ -137,6 +138,9 @@ def get_relevant_integers(integers_list: list[int], symbols_check: list[bool]) -
 
 
 if __name__ == "__main__":
-    output = determine_input_types(example_input)
+    puzzle_input = read_input_file(input_file)
+    output = determine_input_types(puzzle_input)
+    # output = determine_input_types(example_input)
     print(output)
-    main(output)
+    solution = main(output)
+    print(solution)
