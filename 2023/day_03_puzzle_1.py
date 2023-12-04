@@ -57,13 +57,11 @@ def main(input_array: np.array):
     integer_coordinates = []
     integers_found = []
     for line_number, array in enumerate(integer_array):
-        # print(array)
         # get coordinates of integers
         number_fields = []
         for field_number, field in enumerate(array):
             if all((not np.isnan(field), field >= 0)):
                 number_fields.append(field_number)
-        # print(number_fields)
         # skip if no numbers are found
         if not number_fields:
             continue
@@ -72,7 +70,6 @@ def main(input_array: np.array):
         current_location = 0
         number_as_string = ""
         for i, number in enumerate(number_fields):
-            # print(number, current_location)
             if i == 0:
                 number_as_string = str(int(array[number]))
                 locations_found = [[number]]
@@ -85,51 +82,49 @@ def main(input_array: np.array):
                 number_as_string = str(int(array[number]))
             current_location = number
         integers_found.append(int(number_as_string))
-        # print(locations_found, integers_found)
         integer_coordinates.append([line_number, locations_found])
-    # print(integer_coordinates)
     # check whether symbol adjacent
     adjacent_symbol_check = []
-    # print(symbol_array)
     for coordinates in integer_coordinates:
         line, row_list = coordinates
         for rows in row_list:
-            # print(line, rows)
-            lines_to_search = range(max(line-1, 0), min(line+2, integer_array.shape[0]))
-            rows_to_search = range(max(rows[0]-1, 0), min(rows[-1]+2, integer_array.shape[0]))
-            # print(lines_to_search, rows_to_search)
+            lines_to_search = range(
+                max(line - 1, 0), min(line + 2, integer_array.shape[0])
+            )
+            rows_to_search = range(
+                max(rows[0] - 1, 0), min(rows[-1] + 2, integer_array.shape[0])
+            )
             adjacent_symbol_check.append(
                 symbol_at_integer_location(
-                    symbol_array, lines_to_search, rows_to_search, line, rows))
-    # print(adjacent_symbol_check)
-    # print(integers_found)
+                    symbol_array, lines_to_search, rows_to_search, line, rows
+                )
+            )
     relevant_integers = get_relevant_integers(integers_found, adjacent_symbol_check)
-    # print(relevant_integers)
     # assert relevant_integers == example_output
     return sum(relevant_integers)
 
 
 def symbol_at_integer_location(
-        symbol_array: np.array,
-        lines_to_search: Iterable,
-        rows_to_search: Iterable,
-        line_of_integer: int,
-        rows_of_integer: list[int],
+    symbol_array: np.array,
+    lines_to_search: Iterable,
+    rows_to_search: Iterable,
+    line_of_integer: int,
+    rows_of_integer: list[int],
 ) -> bool:
     """Check whether a symbol is present next to the integer."""
     for line in lines_to_search:
         for row in rows_to_search:
-            # print(line, row, symbol_array[line, row], symbol_array[line, row] == 1)
             if line == line_of_integer and row in rows_of_integer:
                 continue
             elif symbol_array[line, row] == 1.0:
                 print("True found", line, row)
                 return True
-    # print("Not found")
     return False
 
 
-def get_relevant_integers(integers_list: list[int], symbols_check: list[bool]) -> list[int]:
+def get_relevant_integers(
+    integers_list: list[int], symbols_check: list[bool]
+) -> list[int]:
     """Return list of integers which are adjacent to a symbol."""
     clean_list = []
     for i, check in zip(integers_list, symbols_check):
