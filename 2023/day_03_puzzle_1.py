@@ -114,10 +114,7 @@ def symbol_at_integer_location(
     """Check whether a symbol is present next to the integer."""
     for line in lines_to_search:
         for row in rows_to_search:
-            if line == line_of_integer and row in rows_of_integer:
-                continue
-            elif symbol_array[line, row] == 1.0:
-                print("True found", line, row)
+            if symbol_array[line, row] == 1.0:
                 return True
     return False
 
@@ -136,6 +133,5 @@ if __name__ == "__main__":
     puzzle_input = read_input_file(input_file)
     output = determine_input_types(puzzle_input)
     # output = determine_input_types(example_input)
-    print(output)
     solution = main(output)
     print(solution)
