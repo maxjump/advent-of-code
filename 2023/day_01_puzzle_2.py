@@ -66,7 +66,7 @@ def find_valid_string_digit(input_string: str) -> str:
 
 
 def reset_string_to_check(string_to_check: str) -> str:
-    """Reset the string to check for a valid string digit considering tricky characters."""
+    """Reset the string to check considering tricky characters."""
     if string_to_check[-1] in tricky_characters:
         return string_to_check[-1]
     else:

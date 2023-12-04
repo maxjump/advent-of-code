@@ -49,7 +49,9 @@ def solve_puzzle(pattern: str = regex_pattern) -> int:
     list_of_decoded_integers = []
     puzzle_input = read_input_file(input_file)
     for line in puzzle_input:
-        list_of_decoded_integers.append((decode_string(find_integers_in_string(line, pattern))))
+        list_of_decoded_integers.append(
+            (decode_string(find_integers_in_string(line, pattern)))
+        )
     return sum_decoded_integers(list_of_decoded_integers)
 
 

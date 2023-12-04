@@ -51,7 +51,7 @@ def check_winning_numbers(elf_numbers: list, winning_numbers: list) -> list:
 
 def calculate_points(elf_winning_numbers: list) -> int:
     """Calculate the points for a card."""
-    power = len(elf_winning_numbers)-1
+    power = len(elf_winning_numbers) - 1
     return 2**power if power >= 0 else 0
 
 
@@ -63,7 +63,7 @@ def validate_example() -> None:
         elf_winning_numbers = check_winning_numbers(elf_numbers, winning_numbers)
         assert elf_winning_numbers == expected_output
         elf_points = calculate_points(elf_winning_numbers)
-        assert elf_points == example_output_points[card_number-1]
+        assert elf_points == example_output_points[card_number - 1]
         points += elf_points
     assert points == sum(example_output_points)
 
