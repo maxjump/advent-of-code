@@ -1,6 +1,6 @@
 """Advent of code, 01.12.2023, puzzle 2"""
 
-from day_01_puzzle_1 import sum_decoded_integers
+from day_01_puzzle_1 import sum_decoded_integers, input_file
 from input_handling import read_input_file
 
 valid_string_digits = {
@@ -41,6 +41,15 @@ def find_integers_in_string(input_string: str) -> str:
     for character in input_string:
         integers_in_string += check_integer_in_string(character)
     return integers_in_string
+
+
+def check_integer_in_string(part_of_string: str) -> str:
+    """Convert a string to an integer."""
+    try:
+        _ = int(part_of_string)
+        return part_of_string
+    except ValueError:
+        return ""
 
 
 def decode_string(integer_string: str) -> int:
@@ -96,7 +105,7 @@ def validate_example():
 def solve_puzzle():
     """Solve the puzzle."""
     list_of_decoded_integers = []
-    puzzle_input = read_input_file("2023/input/day_01_input.txt")
+    puzzle_input = read_input_file(input_file)
     for line in puzzle_input:
         list_of_decoded_integers.append((decode_string(find_all_integers(line))))
     return sum_decoded_integers(list_of_decoded_integers)

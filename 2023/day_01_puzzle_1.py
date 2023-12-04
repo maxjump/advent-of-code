@@ -1,5 +1,6 @@
 """Advent of code, 01.12.2023, puzzle 1"""
 
+import os
 import re
 
 from input_handling import read_input_file
@@ -11,22 +12,15 @@ example_input = [
     "a1b2c3d4e5f",
     "treb7uchet",
 ]
-
 example_output = [12, 38, 15, 77]
+input_file = os.path.join("2023", "input", "day_01_input.txt")
+
+regex_pattern = "[0-9]"
 
 
-def check_integer_in_string(part_of_string: str) -> str:
-    """Convert a string to an integer."""
-    try:
-        _ = int(part_of_string)
-        return part_of_string
-    except ValueError:
-        return ""
-
-
-def find_integers_in_string(input_string: str) -> list:
+def find_integers_in_string(input_string: str, pattern: str) -> list:
     """Find all integers in a string."""
-    return re.findall(pattern="[0-9]", string=input_string)
+    return re.findall(pattern=pattern, string=input_string)
 
 
 def decode_string(list_of_integers: list) -> int:
@@ -39,23 +33,23 @@ def sum_decoded_integers(list_of_decoded_integers: list) -> int:
     return sum(list_of_decoded_integers)
 
 
-def validate_example():
+def validate_example(pattern: str = regex_pattern) -> None:
     """Validate that the processed example input matches the expected output."""
     list_of_decoded_integers = []
     for input_string, expected_integer in zip(example_input, example_output):
         list_of_decoded_integers.append(
-            (decode_string(find_integers_in_string(input_string)))
+            (decode_string(find_integers_in_string(input_string, pattern)))
         )
         assert list_of_decoded_integers[-1] == expected_integer
     assert sum_decoded_integers(list_of_decoded_integers) == sum(example_output)
 
 
-def solve_puzzle():
+def solve_puzzle(pattern: str = regex_pattern) -> int:
     """Solve the puzzle."""
     list_of_decoded_integers = []
-    puzzle_input = read_input_file("2023/input/day_01_input.txt")
+    puzzle_input = read_input_file(input_file)
     for line in puzzle_input:
-        list_of_decoded_integers.append((decode_string(find_integers_in_string(line))))
+        list_of_decoded_integers.append((decode_string(find_integers_in_string(line, pattern))))
     return sum_decoded_integers(list_of_decoded_integers)
 
 
