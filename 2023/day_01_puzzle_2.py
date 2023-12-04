@@ -1,6 +1,6 @@
 """Advent of code, 01.12.2023, puzzle 2"""
 
-from day_01_puzzle_1 import find_integers_in_string, decode_string, sum_decoded_integers
+from day_01_puzzle_1 import sum_decoded_integers, input_file
 from input_handling import read_input_file
 
 valid_string_digits = {
@@ -35,6 +35,28 @@ tricky_characters = [
 example_output = [29, 83, 13, 24, 42, 14, 76]
 
 
+def find_integers_in_string(input_string: str) -> str:
+    """Find all integers in a string."""
+    integers_in_string = ""
+    for character in input_string:
+        integers_in_string += check_integer_in_string(character)
+    return integers_in_string
+
+
+def check_integer_in_string(part_of_string: str) -> str:
+    """Convert a string to an integer."""
+    try:
+        _ = int(part_of_string)
+        return part_of_string
+    except ValueError:
+        return ""
+
+
+def decode_string(integer_string: str) -> int:
+    """Decode a string to return the first and last number contained as one integer."""
+    return int(integer_string[0] + integer_string[-1])
+
+
 def find_valid_string_digit(input_string: str) -> str:
     """Find a valid string digit in a string."""
     for valid_string_digit in valid_string_digits.keys():
@@ -44,7 +66,7 @@ def find_valid_string_digit(input_string: str) -> str:
 
 
 def reset_string_to_check(string_to_check: str) -> str:
-    """Reset the string to check for a valid string digit considering tricky characters."""
+    """Reset the string to check considering tricky characters."""
     if string_to_check[-1] in tricky_characters:
         return string_to_check[-1]
     else:
@@ -83,7 +105,7 @@ def validate_example():
 def solve_puzzle():
     """Solve the puzzle."""
     list_of_decoded_integers = []
-    puzzle_input = read_input_file("2023/input/day_01_input.txt")
+    puzzle_input = read_input_file(input_file)
     for line in puzzle_input:
         list_of_decoded_integers.append((decode_string(find_all_integers(line))))
     return sum_decoded_integers(list_of_decoded_integers)
