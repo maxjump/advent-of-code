@@ -1,7 +1,11 @@
 """Advent of code, 04.12.2023, puzzle 2"""
 
-from day_04_puzzle_1 import (check_winning_numbers, example_input, input_file,
-                             prepare_input)
+from day_04_puzzle_1 import (
+    check_winning_numbers,
+    example_input,
+    input_file,
+    prepare_input,
+)
 from input_handling import read_input_file
 
 example_output = {
