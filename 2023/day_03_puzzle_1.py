@@ -4,7 +4,6 @@ import os
 from typing import Iterable
 
 import numpy as np
-
 from input_handling import read_input_file
 
 example_input = [

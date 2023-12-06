@@ -1,6 +1,6 @@
 """Advent of code, 01.12.2023, puzzle 2"""
 
-from day_01_puzzle_1 import sum_decoded_integers, input_file
+from day_01_puzzle_1 import input_file, sum_decoded_integers
 from input_handling import read_input_file
 
 valid_string_digits = {

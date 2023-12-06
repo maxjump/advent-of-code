@@ -1,7 +1,8 @@
 """Advent of code, 06.12.2023, puzzle 1"""
 
-import os
 import math
+import os
+
 from input_handling import read_input_file
 
 example_input = [
@@ -44,7 +45,9 @@ def calculate_ways_to_win_all_races(race_dict: dict) -> (int, list):
 
 if __name__ == "__main__":
     race_dict = prepare_input(example_input)
-    example_ways_to_win, example_ways_to_win_list = calculate_ways_to_win_all_races(race_dict)
+    example_ways_to_win, example_ways_to_win_list = calculate_ways_to_win_all_races(
+        race_dict
+    )
     assert example_ways_to_win == example_output_ways_to_win
     assert example_ways_to_win_list == example_output
     race_dict = prepare_input(read_input_file(input_file))

@@ -2,12 +2,8 @@
 
 import math
 
-from day_02_puzzle_1 import (
-    example_input,
-    handle_raw_input,
-    input_file,
-    transform_round_information,
-)
+from day_02_puzzle_1 import (example_input, handle_raw_input, input_file,
+                             transform_round_information)
 from input_handling import read_input_file
 
 example_output = [48, 12, 1560, 630, 36]

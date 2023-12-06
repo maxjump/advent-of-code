@@ -5,7 +5,6 @@ import re
 
 from input_handling import read_input_file
 
-
 example_input = [
     "1abc2",
     "pqr3stu8vwx",
