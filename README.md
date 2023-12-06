@@ -11,8 +11,9 @@ Each day is a separate python file. To run a day, simply run the file with pytho
 ```python
 python 2023/day_01_puzzle_1.py
 ```
+Please note that a few puzzles require additional dependencies. These are listed in the requirements.txt file.
 
-If you want to run the included linters (black and flake8), install the dependencies from the requirements file:
+If you want to install those and/or run the included linters (black, flake8 and isort), install the dependencies from the file:
 ```bash
 pip install -r requirements.txt
 ```
