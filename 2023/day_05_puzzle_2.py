@@ -1,6 +1,12 @@
 """Advent of code, 05.12.2023, puzzle 2"""
 
-from day_05_puzzle_1 import example_input, input_file, prepare_input, mapping_order, get_destination_for_source
+from day_05_puzzle_1 import (
+    example_input,
+    get_destination_for_source,
+    input_file,
+    mapping_order,
+    prepare_input,
+)
 from input_handling import read_input_file
 
 example_output = 46
@@ -9,7 +15,11 @@ example_output = 46
 def prepare_seed_line(seed_line: str) -> list:
     """Prepare the seed line for further processing."""
     integers = [int(i) for i in seed_line.split(":")[1].strip().split(" ")]
-    tuples_list = [range(integers[i], integers[i] + integers[i + 1]) for i in range(0, len(integers), 2) if i + 1 < len(integers)]
+    tuples_list = [
+        range(integers[i], integers[i] + integers[i + 1])
+        for i in range(0, len(integers), 2)
+        if i + 1 < len(integers)
+    ]
     return tuples_list
 
 

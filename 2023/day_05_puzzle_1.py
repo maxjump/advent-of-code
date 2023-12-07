@@ -2,6 +2,7 @@
 
 import os
 from typing import Callable
+
 from input_handling import read_input_file
 
 example_input = [
