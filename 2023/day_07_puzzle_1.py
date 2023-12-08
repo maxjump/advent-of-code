@@ -81,14 +81,9 @@ def get_value_of_hand(hand: str) -> int:
     return hand_value
 
 
-def get_value_of_card(card: str) -> int:
+def get_value_of_card(card: str, card_values: dict) -> int:
     """Get the value of a card."""
     return card_values.get(card)
-
-
-def get_value_of_hand_cards(hand: str) -> list:
-    """Get the value of the cards in a hand."""
-    return [get_value_of_card(card) for card in hand]
 
 
 def generate_games_dict(raw_input: list) -> dict:
@@ -97,8 +92,9 @@ def generate_games_dict(raw_input: list) -> dict:
     for i, line in enumerate(raw_input):
         hand, bid = prepare_input(line)
         hand_value = get_value_of_hand(hand)
-        cards_value = get_value_of_hand_cards(hand)
-        games_dict[i] = [hand, bid, hand_value] + [value for value in cards_value]
+        games_dict[i] = [hand, bid, hand_value] + [
+            get_value_of_card(card, card_values) for card in hand
+        ]
     return games_dict
 
 
