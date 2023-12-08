@@ -76,7 +76,7 @@ def get_card_frequency(hand: str) -> dict:
 
 
 def get_most_frequent_card(hand: str) -> str:
-    """Get the most frequent not-joker card. Return the best of those if there are multiple."""
+    """Get the most frequent not-joker card. Return the best if there are multiple."""
     hand_dict = get_card_frequency(hand.replace("J", ""))
     if max(hand_dict.values()) == 4:
         return [key for (key, value) in hand_dict.items() if value == 4][0]
